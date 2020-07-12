@@ -1,0 +1,27 @@
+import * as firebase from "firebase/app";
+
+import "firebase/auth";
+import "firebase/firestore";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyBPGa2QRSfvGMLVSgvPeCYRX_fJL7zdex8",
+  authDomain: "joobleinterviewfrontend.firebaseapp.com",
+  databaseURL: "https://joobleinterviewfrontend.firebaseio.com",
+  projectId: "joobleinterviewfrontend",
+  storageBucket: "joobleinterviewfrontend.appspot.com",
+  messagingSenderId: "84956270178",
+  appId: "1:84956270178:web:65528f215c98826a"
+};
+
+firebase.initializeApp(firebaseConfig);
+
+firebase
+  .auth()
+  .signInWithEmailAndPassword("romanenko1927@gmail.com", "_U5NTp73Yh)'M~t5")
+  .catch(error => {
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    console.log("Auth error >  ", errorMessage, errorCode); // ...
+  });
+
+export default firebase;

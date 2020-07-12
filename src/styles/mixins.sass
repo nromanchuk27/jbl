@@ -1,0 +1,42 @@
+// width
+=r($width)
+    @media only screen and (max-width: $width + "px")
+        @content
+// min-width
+=rm($width)
+    @media only screen and (min-width: $width + "px")
+        @content
+
+=flex($v, $h)
+    display: flex
+    align-items: $v
+    justify-content: $h
+
+=center
+    display: flex
+    justify-content: center
+    align-items: center
+
+=position($pos, $t, $r, $b, $l)
+    position: $pos
+    top: $t
+    right: $r
+    bottom: $b
+    left: $l
+
+=text-overflow
+    overflow: hidden
+    text-overflow: ellipsis
+    white-space: nowrap
+=f
+    font-family: '"Segoe"', sans-serif
+
+=hover($color)
+    &:hover
+        background: lighten($color, 10%)
+        border-color: lighten($color, 10%)
+
+=active($color)
+    &:active
+        background: darken($color, 10%)
+        border-color: darken($color, 10%)

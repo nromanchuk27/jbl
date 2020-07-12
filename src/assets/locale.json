@@ -1,0 +1,26 @@
+{
+  "MAIN_MODAL__BUTTON_NEXT": "Next",
+  "MAIN_MODAL__BUTTON_PREV": "Prev",
+  "MAIN_MODAL__BUTTON_CREATE": "Create",
+  "MAIN_MODAL__BUTTON_EDIT": "Edit",
+  "MAIN_MODAL__CODE": "Code",
+  "MAIN_MODAL__NAME": "Name",
+  "MAIN_MODAL__PRICE": "Price",
+  "MAIN_MODAL__DATE": "Expiration date",
+  "MAIN_MODAL__INDICATION": "Indication",
+  "MAIN_MODAL__COMPOSITION": "Composition and release form",
+  "MAIN_MODAL__CONTRAINDICATIONS": "Contraindications",
+  "MAIN_MODAL__TITLE_ADD": "Add medicine",
+  "MAIN_MODAL__TITLE_EDIT": "Edit medicine",
+
+  "DELETE_MODAL__TITLE": "Are you sure?",
+
+  "BUTTON_CANCEL": "Cancel",
+  "BUTTON_EDIT": "edit",
+  "BUTTON_DELETE": "delete",
+
+  "ERROR_GETTING": "List of medicines wasn't received",
+  "ERROR_VALIDATION_STRING": "This field must be a string",
+  "ERROR_VALIDATION_NUMBER": "This field must be a number",
+  "ERROR_VALIDATION_LENGTH": "This field must have from {{from}} to {{to}} symbols"
+}
