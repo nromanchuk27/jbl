@@ -4,7 +4,6 @@ import { getMedicines, changeModalStatus } from "./actions";
 import { isEmpty } from "lodash";
 import { v4 as uuidv4 } from "uuid";
 import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 
 import Loader from "react-loader-spinner";
 
