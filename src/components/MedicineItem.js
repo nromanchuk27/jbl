@@ -12,7 +12,7 @@ const MedicineItem = props => {
   };
 
   return (
-    <div className="med__item">
+    <div className="med__item" onDoubleClick={() => openModal("main", { mode: "edit", id: docID })}>
       <div className="med__item-info">
         <div className="med__item-value">{code}</div>
         <div className="med__item-value">{name}</div>
@@ -22,7 +22,7 @@ const MedicineItem = props => {
         <div className="med__button med__item-button" onClick={() => openModal("main", { mode: "edit", id: docID })}>
           {locale.BUTTON_EDIT}
         </div>
-        <div className="med__button med__item-button" onClick={() => openModal("delete", { id: docID })}>
+        <div className="med__button med__item-button med__button_red" onClick={() => openModal("delete", { id: docID })}>
           {locale.BUTTON_DELETE}
         </div>
       </div>

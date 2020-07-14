@@ -1,4 +1,6 @@
 import { GET_MEDICINES, ITEM_WAS_SET, CHANGE_MODAL_STATUS, ITEM_WAS_DELETED, ITEM_WAS_UPDATED } from "./types.js";
+
+import { toast } from "react-toastify";
 import { v4 as uuidv4 } from "uuid";
 
 const COLLECTION_NAME = "medicines_romanchuk";
@@ -10,43 +12,44 @@ export const setMedicineData = data => (dispatch, _, { getFirestore }) => {
   db.collection(COLLECTION_NAME)
     .add(data)
     .then(doc => {
-      console.log("Document written with ID: ", doc.id);
       dispatch({ type: ITEM_WAS_SET, payload: { ...data, docID: doc.id } });
+      toast.success("Item was successfully created!");
     })
     .catch(function (error) {
-      console.error("Error adding document: ", error);
+      console.error("Error adding item: ", error);
+      toast.err("Something went wrong! Item wasn't created");
     });
 };
 
 export const updateData = data => (dispatch, _, { getFirestore }) => {
   const db = getFirestore();
 
-  // TODO CHANGE CODE IN THE BOTTOM
-  /* SvPJCXAGdCfKv6SVOT8H */
   db.collection(COLLECTION_NAME)
     .doc(data.docID)
     .update(data)
     .then(() => {
       dispatch({ type: ITEM_WAS_UPDATED, payload: data });
+      toast.success("Item was successfully edited!");
     })
     .catch(error => {
       console.error("Error changing document ", error);
+      toast.err("Something went wrong! Item wasn't edited");
     });
 };
 
-export const deleteItem = id => (dispatch, getState, { getFirestore }) => {
+export const deleteItem = id => (dispatch, _, { getFirestore }) => {
   const db = getFirestore();
 
-  // TODO CHANGE CODE ID LOGIC FROM GET STATE
   db.collection(COLLECTION_NAME)
     .doc(id)
     .delete()
     .then(() => {
       dispatch({ type: ITEM_WAS_DELETED, payload: id });
-      console.log("Document successfully deleted!");
+      toast.success("Item was successfully deleted!");
     })
     .catch(error => {
       console.error("Error removing document: ", error);
+      toast.err("Something went wrong! Item wasn't deleted");
     });
 };
 
@@ -57,11 +60,16 @@ export const getMedicines = () => (dispatch, _, { getFirestore }) => {
     .then(querySnapshot => {
       const data = [];
       querySnapshot.forEach(doc => {
-        console.log(doc.id, "< ID");
-        /* doc.ref.delete(); */
-        data.push({ ...doc.data(), docID: doc.id });
+        const parsedData = doc.data();
+        parsedData.price = Number(parsedData.price);
+        parsedData.shelfLife = Number(parsedData.shelfLife);
+        data.push({ ...parsedData, docID: doc.id });
       });
       dispatch({ type: GET_MEDICINES, payload: data });
+    })
+    .catch(err => {
+      console.error("Error in getting document: ", err);
+      toast.err("Something went wrong! Please try again!");
     });
 };
 

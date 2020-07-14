@@ -2,14 +2,23 @@ body
 	font-family: "Raleway", sans-serif
 	color: $mainColor
 	background-color: $bgColor
+	+r(767)
+		font-size: 13px
 
 .med
+	&_center
+		margin-top: 50px
+		display: flex
+		justify-content: center
 	&__container 
 		width: 100%
 		max-width: 1280px
 		margin: 0 auto
-		+r(1279) 
+		+rm(768) 
 			padding: 0 50px
+
+	&__item-info, &__header-titles
+		width: 70%
 	&__item 
 		margin-top: 20px
 		display: flex
@@ -19,18 +28,55 @@ body
 		box-shadow: 0 0 24px 0 rgba(47,170,247,0.04) 
 		border-radius: 20px 
 		width: 100% 
-		padding: 10px 40px 
-		&-info
-			width: 70%
+		padding: 10px 40px
+		+r(767)
+			width: auto 
+			flex-direction: column
+			justify-content: flex-start
+			align-items: flex-start
+			margin: 20px 
+			padding: 30px 20px
+			border-radius: 10px
+		
 		&-info, &-control 
 			display: flex
+		&-info 
+			+r(767)
+				flex-direction: column
+		&-control 
+			+r(767)
+				margin-top: 20px
+				justify-content: space-between
+				width: 100%
 		&-button:nth-child(2) 
-			+rm(1179)
+			+rm(768)
 				margin-left: 20px
-		&-value
-			width: 100%
-			&:not(:last-child)
+		&-value, &-header
+			width: 100% 
+			+rm(768)
 				margin-right: 10px
+				&:nth-child(1)
+					width: 20%
+				&:nth-child(2)
+					width: 70%
+				&:nth-child(3)
+					width: 10%
+		&-value
+			+rm(768)
+				+text-overflow
+		&_header 
+			height: 50px 
+			background-color: #2faaf7 
+			box-shadow: 0 10px 50px 0 rgba(47,170,247,0.35) 
+			color: #fff 
+			text-transform: uppercase 
+			font-size: 13px 
+			font-weight: 600 
+			letter-spacing: 0.6px 
+			margin-top: 40px 
+			+r(767)
+				display: none
+
 	&__button 
 		color: #fff
 		cursor: pointer
@@ -43,10 +89,20 @@ body
 			background-color: $redColor
 			+hover($redColorHover)
 			+active($redColorActive)
+		&_disabled 
+			background:#ECEFF1
+			cursor: auto
+			&:hover 
+				background: #ECEFF1 !important
+		+r(767)
+			font-size: 14px
+			border-radius: 5px
 	&__add
 		display: flex
 		justify-content: flex-end
 		margin-top: 25px
+		+r(767)
+			margin: 20px 
 		&-button
 			cursor: pointer
 			+center
@@ -54,14 +110,22 @@ body
 			width: 70px
 			padding: 10px
 			border-radius: 10px
+			box-shadow: 0 0 24px 0 rgba(47,170,247,0.04) 
+			+active(#fafdff)
 			svg 
 				width: 35px
 				height: 35px
+		
 	&__modal 
-		+position(absolute, 0, 0, 0, 0)
+		+position(fixed, 0, 0, 0, 0)
 		background: rgba(0,0,0,.4) 
 		z-index: 5 
+		&-content 
+			margin-top: 20px
+			&_hide 
+				display: none
 		&-close 
+			cursor: pointer
 			position: absolute
 			right: 0
 			top: 0
@@ -75,8 +139,8 @@ body
 			width: 50%
 			box-shadow: 0 14px 40px rgba(0,0,0,.35)  
 			background-color: #fff
-			padding: 40px 20px
-			position: fixed
+			padding: 40px 30px
+			position: absolute
 			
 			+rm(768)
 				max-width: 600px
@@ -96,14 +160,12 @@ body
 			display: flex
 			align-items: center
 			&:not(:first-child)
-				margin-top: 20px
+				margin-top: 25px
 			span 
 				width: 30%
 				display: block
 				padding-right: 5px
-				word-break: break-word
-			input 
-				width: 70%
+				word-break: break-word	
 		&-title, &-control
 			display: flex
 		&-title
@@ -118,6 +180,20 @@ body
 		&-control
 			margin-top: 50px
 			justify-content: space-around
+			+r(767)
+				margin-top: 25px
+		&-wrapper 
+			width: 100%
+			position: relative
+		&-error 
+			position: absolute
+			left: 5px
+			bottom: -17px
+			font-style: italic
+			color: $redColor
+			font-size: 13px
+			+r(767)
+				font-size: 10px
 		&-inp
 			outline: none
 			display: block 

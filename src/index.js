@@ -7,6 +7,8 @@ import { createStore, applyMiddleware, compose } from "redux";
 import thunk from "redux-thunk";
 
 import "./styles/main.sass";
+import "react-toastify/dist/ReactToastify.css";
+
 import App from "./App";
 
 import firebase from "./config/init-firebase";

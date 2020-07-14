@@ -3,6 +3,7 @@
   "MAIN_MODAL__BUTTON_PREV": "Prev",
   "MAIN_MODAL__BUTTON_CREATE": "Create",
   "MAIN_MODAL__BUTTON_EDIT": "Edit",
+  "MAIN_MODAL__REQUIRED": "required field",
   "MAIN_MODAL__CODE": "Code",
   "MAIN_MODAL__NAME": "Name",
   "MAIN_MODAL__PRICE": "Price",
@@ -19,8 +20,13 @@
   "BUTTON_EDIT": "edit",
   "BUTTON_DELETE": "delete",
 
-  "ERROR_GETTING": "List of medicines wasn't received",
-  "ERROR_VALIDATION_STRING": "This field must be a string",
-  "ERROR_VALIDATION_NUMBER": "This field must be a number",
-  "ERROR_VALIDATION_LENGTH": "This field must have from {{from}} to {{to}} symbols"
+  "ERROR_NUMBER": "This field must be a number in range from {{from}} to {{to}}",
+  "gettingError": "List of medicines wasn't received",
+  "ERROR_VALIDATION_LENGTH": "This field must have from {{from}} to {{to}} symbols",
+
+  "HEADER__NAME": "Name",
+  "HEADER__CODE": "Code",
+  "HEADER__PRICE": "Price",
+
+  "LIST_IS_EMPTY": "List is empty please add medicine"
 }

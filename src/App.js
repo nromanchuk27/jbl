@@ -3,11 +3,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { getMedicines, changeModalStatus } from "./actions";
 import { isEmpty } from "lodash";
 import { v4 as uuidv4 } from "uuid";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 import Loader from "react-loader-spinner";
 
 import Error from "./components/Error"; // TODO: change name
-import MedicineItem from "./components/MedicineItem"; // TODO: change name
+import MedicineItem from "./components/MedicineItem";
 
 import MainModal from "./components/modals/MainModal";
 import DeleteModal from "./components/modals/DeleteModal";
@@ -17,31 +19,48 @@ import { ReactComponent as AddSVG } from "./assets/svg/add.svg";
 
 const App = () => {
   const dispatch = useDispatch();
-  const { medicineList, ERROR_GETTING, showMainModal, showDeleteModal } = useSelector(state => state.main);
+  const { medicineList, gettingError, showMainModal, showDeleteModal } = useSelector(state => state.main);
 
   useEffect(() => {
     dispatch(getMedicines());
-  }, []);
-
-  console.log(medicineList, "medicineList");
+  }, [dispatch]);
 
   const openAddModal = () => {
     dispatch(changeModalStatus("main", { mode: "add" }));
   };
 
-  if (isEmpty(medicineList) && !ERROR_GETTING) return <Loader type="TailSpin" color="#00BFFF" height={80} width={80} />;
+  if (!medicineList && !gettingError) {
+    return <Loader type="TailSpin" color="#00BFFF" height={80} width={80} className="med_center" />;
+  }
 
-  if (ERROR_GETTING) return <Error errorText={locale.ERROR_GETTING} />;
+  if (gettingError) return <Error errorText={locale.gettingError} />;
 
   return (
     <div className="med__container">
+      <ToastContainer
+        position="top-right"
+        hideProgressBar={true}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        draggable={false}
+      />
+      {isEmpty(medicineList) && <div className="med_center">{locale.LIST_IS_EMPTY}</div>}
       {(showMainModal || showDeleteModal) && (
         <div className="med__modal">
           {showMainModal && <MainModal />}
           {showDeleteModal && <DeleteModal />}
         </div>
       )}
-
+      {!isEmpty(medicineList) && (
+        <div className="med__item med__item_header">
+          <div className="med__item-info">
+            <div className="med__item-header">{locale.HEADER__NAME}</div>
+            <div className="med__item-header">{locale.HEADER__CODE}</div>
+            <div className="med__item-header">{locale.HEADER__PRICE}</div>
+          </div>
+        </div>
+      )}
       {medicineList.map(item => (
         <MedicineItem data={item} key={uuidv4()} />
       ))}

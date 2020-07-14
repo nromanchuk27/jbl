@@ -1,8 +1,15 @@
-import { GET_MEDICINES, CHANGE_MODAL_STATUS, ITEM_WAS_DELETED, ITEM_WAS_UPDATED, ITEM_WAS_SET } from "../actions/types";
+import {
+  GET_MEDICINES,
+  CHANGE_MODAL_STATUS,
+  ITEM_WAS_DELETED,
+  ITEM_WAS_UPDATED,
+  ITEM_WAS_SET,
+  CHANGE_ALERT_MODAL_STATUS
+} from "../actions/types";
 
 const INITIAL_STATE = {
-  medicineList: [],
-  ERROR_GETTING: false,
+  medicineList: null,
+  gettingError: false,
   showMainModal: false,
   showDeleteModal: false,
   modalParam: null
@@ -10,6 +17,12 @@ const INITIAL_STATE = {
 
 export default (state = INITIAL_STATE, { type, payload }) => {
   switch (type) {
+    case CHANGE_ALERT_MODAL_STATUS: {
+      return {
+        ...state,
+        alertModalStatus: !state.alertModalStatus
+      };
+    }
     case ITEM_WAS_SET: {
       return {
         ...state,
@@ -36,7 +49,6 @@ export default (state = INITIAL_STATE, { type, payload }) => {
       };
     }
     case ITEM_WAS_DELETED: {
-      console.log(payload, "payload ");
       return {
         ...state,
         medicineList: state.medicineList.filter(item => item.docID !== payload),
