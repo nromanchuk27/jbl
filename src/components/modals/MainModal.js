@@ -106,10 +106,9 @@ const MainModal = () => {
                 name="price"
                 className="med__modal-inp"
                 ref={register({
-                  max: 1000000,
                   required: locale.MAIN_MODAL__REQUIRED,
                   pattern: {
-                    value: /^(?=.*[1-9])\d{0,6}(?:\.\d{0,2})?$/,
+                    value: /^(?=.*[1-9])\d{0,6}(?:\.\d{0,2})|1000000*|0?$/,
                     message: generateMessage(0.01, 1000000, locale.ERROR_NUMBER)
                   }
                 })}
@@ -126,7 +125,7 @@ const MainModal = () => {
                 ref={register({
                   required: locale.MAIN_MODAL__REQUIRED,
                   pattern: {
-                    value: /^([1-9][0-9]{0,2}|1000)$/,
+                    value: /^([1-9][0-9]{0,2}|1000*|0)$/,
                     message: generateMessage(1, 1000, locale.ERROR_NUMBER)
                   }
                 })}
