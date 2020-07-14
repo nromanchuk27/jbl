@@ -1,10 +1,10 @@
-import React, { useEffect, useState, useRef } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React, {useEffect, useState, useRef} from "react";
+import {useDispatch, useSelector} from "react-redux";
 import locale from "../../assets/locale.json";
-import { changeModalStatus, updateData, setMedicineData } from "../../actions";
-import { ReactComponent as CloseSVG } from "../../assets/svg/close.svg";
-import { useForm } from "react-hook-form";
-import { isEmpty } from "lodash";
+import {changeModalStatus, updateData, setMedicineData} from "../../actions";
+import {ReactComponent as CloseSVG} from "../../assets/svg/close.svg";
+import {useForm} from "react-hook-form";
+import {isEmpty} from "lodash";
 
 const generateMessage = (from, to, str) => {
   return str.replace("{{from}}", from).replace("{{to}}", to);
@@ -14,10 +14,10 @@ const bigLengthRex = /^\w{0,2000}$/;
 
 const MainModal = () => {
   const {
-    modalParam: { id, mode },
+    modalParam: {id, mode},
     medicineList
   } = useSelector(state => state.main);
-  const { handleSubmit, register, errors } = useForm({
+  const {handleSubmit, register, errors} = useForm({
     defaultValues: medicineList.find(item => item.docID === id) || {}
   });
   const [step, setStep] = useState(1);
@@ -37,7 +37,7 @@ const MainModal = () => {
 
   const onSubmit = data => {
     if (step > 1) {
-      mode === "add" ? dispatch(setMedicineData(data)) : dispatch(updateData({ ...data, docID: id }));
+      mode === "add" ? dispatch(setMedicineData(data)) : dispatch(updateData({...data, docID: id}));
     } else {
       changeStep();
     }
@@ -108,7 +108,7 @@ const MainModal = () => {
                 ref={register({
                   required: locale.MAIN_MODAL__REQUIRED,
                   pattern: {
-                    value: /^(?=.*[1-9])\d{0,6}(?:\.\d{0,2})?|100000$/,
+                    value: /^((0((\.|,)0[1-9]\d*)$)|([1-9][0-9]{0,5}((\.|,)\d+?)?)|1000000((\.|,)0+)?)$/,
                     message: generateMessage(0.01, 1000000, locale.ERROR_NUMBER)
                   }
                 })}
@@ -125,7 +125,7 @@ const MainModal = () => {
                 ref={register({
                   required: locale.MAIN_MODAL__REQUIRED,
                   pattern: {
-                    value: /(?:[1-9]|[1-9][0-9]{1,2}|1000)/,
+                    value: /^((1((\.|,)\d+)$)|([1-9][0-9]{0,2}((\.|,)\d+?)?)|1000((\.|,)0+)?)$/,
                     message: generateMessage(1, 1000, locale.ERROR_NUMBER)
                   }
                 })}
