@@ -108,7 +108,7 @@ const MainModal = () => {
                 ref={register({
                   required: locale.MAIN_MODAL__REQUIRED,
                   pattern: {
-                    value: /^(?=.*[1-9])\d{0,6}(?:\.\d{0,2})|1000000*|0?$/,
+                    value: /^(?=.*[1-9])\d{0,6}(?:\.\d{0,2})?|100000$/,
                     message: generateMessage(0.01, 1000000, locale.ERROR_NUMBER)
                   }
                 })}
@@ -125,7 +125,7 @@ const MainModal = () => {
                 ref={register({
                   required: locale.MAIN_MODAL__REQUIRED,
                   pattern: {
-                    value: /^([1-9][0-9]{0,2}|1000*|0)$/,
+                    value: /(?:[1-9]|[1-9][0-9]{1,2}|1000)/,
                     message: generateMessage(1, 1000, locale.ERROR_NUMBER)
                   }
                 })}
